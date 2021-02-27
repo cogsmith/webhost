@@ -1,6 +1,6 @@
 # WX-Static
 
-## Serve Files & Directory Listings Over HTTP
+## Serve Files & Directory Listings Via HTTP
 
 ## Hive Web Publishing Engine
 
