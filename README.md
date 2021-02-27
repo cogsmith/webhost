@@ -1,5 +1,7 @@
 # WX-Static
 
-## Hive Web Publishing Engine Static Server
+## Serve Files & Directory Listings Over HTTP
+
+## Hive Web Publishing Engine
 
 ---
