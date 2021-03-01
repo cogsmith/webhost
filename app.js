@@ -16,7 +16,7 @@ const AppJSON = require('./package.json');
 const AppMeta = {
     Version:AppJSON.version||process.env.npm_package_version||'0.0.0',
     Name:AppJSON.namelong||AppJSON.name||'App',
-    Io:AppJSON.description||'',
+    Info:AppJSON.description||'',
 }; AppMeta.Full = AppMeta.Name + ': ' + AppMeta.Info + ' [' + AppMeta.Version + ']';
 
 const AppArgs = 
