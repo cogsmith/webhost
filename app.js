@@ -1,4 +1,4 @@
-// // app.js --ip 0.0.0.0 --port 80 --www W:\DEV\WEB --redirect foo.com=bar.com -r 127.0.0.1/foo=127.0.0.1/bar -r /foo=/bar -r /xyz=https://google.com
+//app.js --ip 0.0.0.0 --port 80 --www W:\DEV\WEB --redirect foo.com=bar.com -r 127.0.0.1/foo=127.0.0.1/bar -r /foo=/bar -r /xyz=https://google.com
 
 const path = require('path');
 const yargs = require('yargs/yargs');
@@ -23,15 +23,18 @@ const AppArgs =
     // .command(['serve','$0'],'Run Server')
     .usage("\n"+AppMeta.Full+"\n\n"+'USAGE: node $0 [options]')
     .epilog('DT: '+new Date().toISOString()+"\n\n"+process.argv.join(' ')+"\n")
+    .demandOption(['ip','port','base','www'])
     .describe('v','Logging Level').default('v',0).alias('v','verbose').count('verbose')                
     .describe('ip','Bind IP').default('ip','127.0.0.1')
     .describe('port','Bind Port').default('port',80)
     .describe('base','Web Base Prefix').default('base','/')
     .describe('www','Web Root Path') // .default('www',path.join(process.cwd(),'www'))
-    .describe('redirect','Web Redirects').array('redirect').alias('r','redirect')
-    .demandOption(['ip','port','base','www'])
+    .describe('redirect','Web Redirects').alias('r','redirect').array('redirect')
+    .describe('list','Web Listings').default('list',false)
     .showHelp('log')
 .argv; console.log();
+
+console.log(AppArgs);
 
 const App = { 
     AppJSON:AppJSON,
@@ -42,7 +45,8 @@ const App = {
     Port:AppArgs.port,
     IP:AppArgs.ip,
     WebRoot:AppArgs.www,
-    WebBase:AppArgs.base
+    WebBase:AppArgs.base,
+    WebList:AppArgs.list
 };
 
 App.Init = function () {
@@ -59,12 +63,7 @@ App.Init = function () {
     // fastify.setNotFoundHandler((req,rep) => { rep.redirect('/404'); });
     fastify.setNotFoundHandler((req,rep) => { rep.code(404).send('404:NOTFOUND'); });
 
-    fastify.register(require('fastify-static'), {
-        root:   App.WebRoot,
-        prefix: App.WebBase,
-        // prefixAvoidTrailingSlash: true,
-        // redirect: true,
-        list: {
+    fastify_list = {
             format:'html', names:['_.html'],
             render: (dirs,files) => {
                 //console.log({DIRS:dirs,FILES:files});
@@ -82,7 +81,14 @@ App.Init = function () {
                     </html>
                 `
             },
-        }
+    };
+
+    fastify.register(require('fastify-static'), {
+        root:   App.WebRoot,
+        prefix: App.WebBase,
+        // prefixAvoidTrailingSlash: true,
+        // redirect: true,
+        list: (App.WebList ? fastify_list : false )
     });
 
     fastify.listen(App.Port, App.IP, (err,address) => { if (err) { throw err; } else { fastify.log.info('App.Init:Done'); App.Main(); } } );
