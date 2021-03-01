@@ -1,5 +1,6 @@
 //app.js --ip 0.0.0.0 --port 80 --www W:\DEV\WEB --redirect foo.com=bar.com -r 127.0.0.1/foo=127.0.0.1/bar -r /foo=/bar -r /xyz=https://google.com
 
+const fs = require('fs');
 const path = require('path');
 const yargs = require('yargs/yargs');
 
@@ -15,7 +16,7 @@ const AppJSON = require('./package.json');
 const AppMeta = {
     Version:AppJSON.version||process.env.npm_package_version||'0.0.0',
     Name:AppJSON.namelong||AppJSON.name||'App',
-    Info:AppJSON.description||'',
+    Io:AppJSON.description||'',
 }; AppMeta.Full = AppMeta.Name + ': ' + AppMeta.Info + ' [' + AppMeta.Version + ']';
 
 const AppArgs = 
@@ -31,9 +32,7 @@ const AppArgs =
     .describe('redirect','Web Redirects').alias('r','redirect').array('redirect')
     .describe('list','Web Listings').default('list',false)
     .showHelp('log')
-.argv; console.log();
-
-console.log(AppArgs);
+.argv; console.log(); // console.log(AppArgs);
 
 const App = { 
     AppJSON:AppJSON,
@@ -59,8 +58,11 @@ App.Init = function () {
         nxt();
     });
 
-    // fastify.setNotFoundHandler((req,rep) => { rep.redirect('/404'); });
-    fastify.setNotFoundHandler((req,rep) => { rep.code(404).send('404:NOTFOUND'); });
+    fastify.setNotFoundHandler((req,rep) => {
+        if (fs.existsSync(App.WebRoot+'/404/index.html')) { rep.redirect('/404'); }
+        else if (fs.existsSync(App.WebRoot+'/404.html'))  { rep.redirect('/404.html'); }
+        else { rep.code(404).send('404:NOTFOUND'); }
+    });
 
     let fastify_list = {
             format:'html', names:['_.html'],
