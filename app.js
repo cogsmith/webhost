@@ -63,7 +63,7 @@ App.Init = function () {
     // fastify.setNotFoundHandler((req,rep) => { rep.redirect('/404'); });
     fastify.setNotFoundHandler((req,rep) => { rep.code(404).send('404:NOTFOUND'); });
 
-    fastify_list = {
+    let fastify_list = {
             format:'html', names:['_.html'],
             render: (dirs,files) => {
                 //console.log({DIRS:dirs,FILES:files});
