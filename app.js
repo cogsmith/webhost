@@ -86,9 +86,9 @@ App.Init = function () {
     fastify.register(require('fastify-static'), {
         root:   App.WebRoot,
         prefix: App.WebBase,
+        list: (App.WebList?fastify_list:false),
         // prefixAvoidTrailingSlash: true,
         // redirect: true,
-        list: (App.WebList ? fastify_list : false )
     });
 
     fastify.listen(App.Port, App.IP, (err,address) => { if (err) { throw err; } else { fastify.log.info('App.Init:Done'); App.Main(); } } );
