@@ -20,7 +20,6 @@ const AppMeta = {
 
 const AppArgs = 
     yargs(process.argv).wrap(125)
-    // .command(['serve','$0'],'Run Server')
     .usage("\n"+AppMeta.Full+"\n\n"+'USAGE: node $0 [options]')
     .epilog('DT: '+new Date().toISOString()+"\n\n"+process.argv.join(' ')+"\n")
     .demandOption(['ip','port','base','www'])
