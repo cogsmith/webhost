@@ -1,4 +1,4 @@
-//app.js --ip 0.0.0.0 --port 80 --www W:\DEV\WEB --redirect foo.com=bar.com -r 127.0.0.1/foo=127.0.0.1/bar -r /foo=/bar -r /xyz=https://google.com
+// app.js --ip 0.0.0.0 --port 80 --www W:\DEV\WEB --redirect foo.com=bar.com -r 127.0.0.1/foo=127.0.0.1/bar -r /foo=/bar -r /xyz=https://google.com
 
 const fs = require('fs');
 const path = require('path');
