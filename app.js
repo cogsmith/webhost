@@ -5,7 +5,7 @@ const path = require('path');
 const yargs = require('yargs/yargs');
 
 const fastify = require('fastify')({
-    logger: true, maxParamLength: 999, ignoreTrailingSlash: false, trustProxy: true,
+    logger: true, maxParamLength: 999, ignoreTrailingSlash: false, trustProxy: App.Args.xhost,
     rewriteUrl: function (req) {
         let url = req.url;
         let host = App.Args.xhost ? req.headers['x-forwarded-host'] : req.headers['host'];
