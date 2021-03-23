@@ -67,7 +67,7 @@ App.Init = function () {
 
     fastify.setNotFoundHandler((req, rep) => {
         let p = App.WebRoot;
-        if (App.Args.vhost) { p = p + '/' + App.HostToSlug(req.hostname); }
+        if (App.Args.vhost) { p = p + '/' + App.GetHostSlug(req.hostname); }
         if (fs.existsSync(p + '/404/index.html')) { rep.redirect('/404'); }
         else if (fs.existsSync(p + '/404.html')) { rep.redirect('/404.html'); }        
         else { rep.code(404).send('404:NOTFOUND'); }
