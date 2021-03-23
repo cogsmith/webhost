@@ -4,6 +4,8 @@ const fs = require('fs');
 const path = require('path');
 const yargs = require('yargs/yargs');
 
+const fastify = require('fastify');
+
 const AppJSON = require('./package.json');
 const AppMeta = {
     Version: AppJSON.version || process.env.npm_package_version || '0.0.0',
@@ -44,7 +46,8 @@ App.GetSlugHost = function (slug) { if (!slug) { return slug; } let host = slug.
 
 App.Init = function () {
 
-    const fastify = require('fastify')({
+    App.Backend = {};
+    App.Backend.Fastify = fastify({
         logger: true, maxParamLength: 999, ignoreTrailingSlash: false, trustProxy: App.Args.xhost,
         rewriteUrl: function (req) {
             let url = req.url;
@@ -56,17 +59,19 @@ App.Init = function () {
         }
     });
 
-    fastify.log.info('App.Init');
+    let ff = App.Backend.Fastify;
+    
+    ff.log.info('App.Init');
 
-    fastify.register(require('fastify-compress'));
+    ff.register(require('fastify-compress'));
 
-    fastify.addHook('onRequest', (req, rep, nxt) => {
+    ff.addHook('onRequest', (req, rep, nxt) => {
         let reqip = req.socket.remoteAddress;
         App.Requests++; if (!App.Clients[reqip]) { App.Clients[reqip] = 1; } else { App.Clients[reqip]++; }
         nxt();
     });
 
-    fastify.setNotFoundHandler((req, rep) => {
+    ff.setNotFoundHandler((req, rep) => {
         let p = App.WebRoot;
         if (App.Args.vhost) { p = p + '/' + App.GetHostSlug(req.hostname) + '/web/raw/@'; }
 
@@ -77,7 +82,7 @@ App.Init = function () {
         else { rep.code(404).send(); }
     });
 
-    let fastify_list = {
+    let ff_list = {
         format: 'html', names: ['_.html'],
         render: (dirs, files) => {
             //console.log({DIRS:dirs,FILES:files});
@@ -97,19 +102,19 @@ App.Init = function () {
         },
     };
 
-    fastify.register(require('fastify-static'), {
+    ff.register(require('fastify-static'), {
         root: App.WebRoot,
         prefix: App.WebBase,
-        list: (App.WebList ? fastify_list : false),
+        list: (App.WebList ? ff_list : false),
         // prefixAvoidTrailingSlash: true,
         // redirect: true,
     });
 
-    fastify.listen(App.Port, App.IP, (err, address) => { if (err) { throw err; } else { fastify.log.info('App.Init:Done'); App.Main(); } });
+    ff.listen(App.Port, App.IP, (err, address) => { if (err) { throw err; } else { ff.log.info('App.Init:Done'); App.Main(); } });
 };
 
 App.Main = function () {
-    fastify.log.info('App.Main');
+    console.log('App.Main');
 };
 
 App.Init();
