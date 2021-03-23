@@ -10,7 +10,7 @@ const fastify = require('fastify')({
         let url = req.url;
         let host = App.Args.xhost ? req.headers['x-forwarded-host'] : req.headers['host'];
         if (!url.includes('.') && url.substr(-1) != '/') { url += '/'; }
-        console.log({ HOST: host, URL: url, REQ: { URL: req.url, H: req.headers } });
+        // console.log({ HOST: host, URL: url, REQ: { URL: req.url, H: req.headers } });
         if (App.Args.vhost) { url = '/' + App.GetHostSlug(host) + '/web/raw/@' + url; }
         return url;
     }
