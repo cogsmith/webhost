@@ -5,7 +5,7 @@ const path = require('path');
 const yargs = require('yargs/yargs');
 
 const fastify = require('fastify')({
-    logger: true, maxParamLength: 999, ignoreTrailingSlash: false,
+    logger: true, maxParamLength: 999, ignoreTrailingSlash: false, trustProxy: true,
     rewriteUrl: function (req) {
         var url = req.url;
         if (!url.includes('.') && url.substr(-1) != '/') { url += '/'; }
