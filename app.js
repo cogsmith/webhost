@@ -7,10 +7,11 @@ const yargs = require('yargs/yargs');
 const fastify = require('fastify')({
     logger: true, maxParamLength: 999, ignoreTrailingSlash: false, trustProxy: true,
     rewriteUrl: function (req) {
-        var url = req.url;
+        let url = req.url;
+        let host = App.Args.xhost ? req.headers['x-forwarded-host'] : req.headers['host'];
         if (!url.includes('.') && url.substr(-1) != '/') { url += '/'; }
-        console.log({REQ:{IP:req.ip,HOSTNAME:req.hostname,URL:req.url,H:req.headers}});
-        if (App.Args.vhost) { url = '/' + App.GetHostSlug(req.hostname) + '/web/raw/@' + url; }
+        console.log({ HOST: host, URL: url, REQ: { URL: req.url, H: req.headers } });
+        if (App.Args.vhost) { url = '/' + App.GetHostSlug(host) + '/web/raw/@' + url; }
         return url;
     }
 });
