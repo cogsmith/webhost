@@ -9,7 +9,7 @@ const fastify = require('fastify')({
     rewriteUrl: function (req) {
         var url = req.url;
         if (!url.includes('.') && url.substr(-1) != '/') { url += '/'; }
-        if (App.Args.vhost) { url = '/' + App.GetHostSlug(req.headers.host) + '/web/raw/@' + url; }
+        if (App.Args.vhost) { url = '/' + App.GetHostSlug(req.hostname) + '/web/raw/@' + url; }
         return url;
     }
 });
