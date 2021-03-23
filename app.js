@@ -9,6 +9,7 @@ const fastify = require('fastify')({
     rewriteUrl: function (req) {
         var url = req.url;
         if (!url.includes('.') && url.substr(-1) != '/') { url += '/'; }
+        console.log({REQ:{IP:req.ip,HOSTNAME:req.hostname,URL:req.url,H:req.headers}});
         if (App.Args.vhost) { url = '/' + App.GetHostSlug(req.hostname) + '/web/raw/@' + url; }
         return url;
     }
@@ -49,8 +50,8 @@ const App = {
     WebList: AppArgs.list
 };
 
-App.GetHostSlug = function (host) { let slug = host.replace(/\./g, '_').toUpperCase(); let z = slug.split('_'); if (z.length >= 3) { slug = z.slice(-2).join('_') + '_' + z.slice(0, z.length - 2).reverse().join('_'); }; return slug; };
-App.GetSlugHost = function (slug) { let host = slug.replace(/_/g, '.'); let z = slug.split('_'); if (z.length >= 2) { host = _.concat(z.slice(2).reverse(), z.slice(0, 2)).join('.'); }; return host; };
+App.GetHostSlug = function (host) { if (!host) { return host; } let slug = host.replace(/\./g, '_').toUpperCase(); let z = slug.split('_'); if (z.length >= 3) { slug = z.slice(-2).join('_') + '_' + z.slice(0, z.length - 2).reverse().join('_'); }; return slug; };
+App.GetSlugHost = function (slug) { if (!slug) { return slug; } let host = slug.replace(/_/g, '.'); let z = slug.split('_'); if (z.length >= 2) { host = _.concat(z.slice(2).reverse(), z.slice(0, 2)).join('.'); }; return host; };
 
 App.Init = function () {
     fastify.log.info('App.Init');
