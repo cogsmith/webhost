@@ -4,18 +4,6 @@ const fs = require('fs');
 const path = require('path');
 const yargs = require('yargs/yargs');
 
-const fastify = require('fastify')({
-    logger: true, maxParamLength: 999, ignoreTrailingSlash: false, trustProxy: App.Args.xhost,
-    rewriteUrl: function (req) {
-        let url = req.url;
-        let host = App.Args.xhost ? req.headers['x-forwarded-host'] : req.headers['host'];
-        if (!url.includes('.') && url.substr(-1) != '/') { url += '/'; }
-        // console.log({ HOST: host, URL: url, REQ: { URL: req.url, H: req.headers } });
-        if (App.Args.vhost) { url = '/' + App.GetHostSlug(host) + '/web/raw/@' + url; }
-        return url;
-    }
-});
-
 const AppJSON = require('./package.json');
 const AppMeta = {
     Version: AppJSON.version || process.env.npm_package_version || '0.0.0',
@@ -55,6 +43,19 @@ App.GetHostSlug = function (host) { if (!host) { return host; } let slug = host.
 App.GetSlugHost = function (slug) { if (!slug) { return slug; } let host = slug.replace(/_/g, '.'); let z = slug.split('_'); if (z.length >= 2) { host = _.concat(z.slice(2).reverse(), z.slice(0, 2)).join('.'); }; return host; };
 
 App.Init = function () {
+
+    const fastify = require('fastify')({
+        logger: true, maxParamLength: 999, ignoreTrailingSlash: false, trustProxy: App.Args.xhost,
+        rewriteUrl: function (req) {
+            let url = req.url;
+            let host = App.Args.xhost ? req.headers['x-forwarded-host'] : req.headers['host'];
+            if (!url.includes('.') && url.substr(-1) != '/') { url += '/'; }
+            // console.log({ HOST: host, URL: url, REQ: { URL: req.url, H: req.headers } });
+            if (App.Args.vhost) { url = '/' + App.GetHostSlug(host) + '/web/raw/@' + url; }
+            return url;
+        }
+    });
+
     fastify.log.info('App.Init');
 
     fastify.register(require('fastify-compress'));
