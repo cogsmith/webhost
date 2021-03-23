@@ -67,12 +67,12 @@ App.Init = function () {
 
     fastify.setNotFoundHandler((req, rep) => {
         let p = App.WebRoot;
-        if (App.Args.vhost) { p = p + '/' + App.GetHostSlug(req.hostname); }
-        
-        console.log({ P:p, HOST: req.hostname, URL: req.url, REQ: { URL: req.url, H: req.headers } });
+        if (App.Args.vhost) { p = p + '/' + App.GetHostSlug(req.hostname) + '/web/raw/@'; }
+
+        console.log({ P: p, HOST: req.hostname, URL: req.url }); // , REQ: { URL: req.url, H: req.headers } });
 
         if (fs.existsSync(p + '/404/index.html')) { rep.redirect('/404'); }
-        else if (fs.existsSync(p + '/404.html')) { rep.redirect('/404.html'); }                
+        else if (fs.existsSync(p + '/404.html')) { rep.redirect('/404.html'); }
         else { rep.code(404).send('404:NOTFOUND'); }
     });
 
