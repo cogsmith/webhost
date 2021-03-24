@@ -1,16 +1,16 @@
 {
-    "version": "0.0.1",
-    "namelong": "WX-Static",
-    "name": "hive-wx-static",
-    "description": "Serve Files & Directory Listings Over HTTP",
+    "version": "0.0.2",
+    "namelong": "WEBHOST",
+    "name": "webhost",
+    "description": "Serve Files / Folders / Redirects",
     "keywords": [
         "cogsmith-hive",
         "http-server",
         "static-files"
     ],
-    "homepage": "https://cogsmith.com/project/0",
+    "homepage": "https://cogsmith.com",
     "license": "http://cogsmith.com/license/public",
-    "repository": "github:cogsmith/0",
+    "repository": "github:cogsmith/webhost",
     "private": true,
     "author": {
         "name": "David Adam Coffey",

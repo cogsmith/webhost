@@ -1,14 +1,12 @@
-# WX-Static
-
-## :globe_with_meridians: Static Web Server :globe_with_meridians:
+# 🌐 WEBHOST: Serve Files / Folders / Redirects 🌐
 ## Serve web sites, directory listings, single files, and redirects 
 
 ---
 
-:octocat: https://github.com/cogsmith/wx-static
+:octocat: https://github.com/cogsmith/webhost
 
-🐳 https://hub.docker.com/r/cogsmith/wx-static
+🐳 https://hub.docker.com/r/cogsmith/webhost
 
 ---
 
-<h1><code><a href='../../blob/main/app.js'>[VIEW APP SOURCE CODE]</a></code></h1>
+<h1><code><a href='https://github.com/cogsmith/webhost/blob/main/app.js'>[VIEW APP SOURCE CODE]</a></code></h1>
