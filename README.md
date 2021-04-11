@@ -11,7 +11,7 @@
 
 #### <code><a href='https://github.com/cogsmith/webhost/blob/main/app.js'>🧾 [VIEW APP SOURCE CODE]</a></code>
 
-#### <code><a href='https://github.com/cogsmith/webhost/projects/2'>📅 [PROJECT TRACKER BOARD]</a></code>
+#### <code><a href='https://github.com/cogsmith/webhost/projects/1'>📅 [PROJECT TRACKER BOARD]</a></code>
 
 ---
 
