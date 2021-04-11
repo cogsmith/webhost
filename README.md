@@ -15,20 +15,20 @@
 
 ---
 
-[![](https://shields.io/github/package-json/v/cogsmith/webhost?label=codebase)](http://github.com)
-[![](https://shields.io/github/last-commit/cogsmith/webhost)](http://github.com)
-[![](https://github.com/cogsmith/webhost/actions/workflows/DEVKING_CHECK.yml/badge.svg)](http://github.com)
+[![](https://shields.io/github/package-json/v/cogsmith/webhost?label=codebase)](http://github.com/cogsmith/webhost)
+[![](https://shields.io/github/last-commit/cogsmith/webhost)](https://github.com/cogsmith/webhost/commits/main)
+[![](https://github.com/cogsmith/webhost/actions/workflows/DEVKING_CHECK.yml/badge.svg)](https://github.com/cogsmith/webhost/actions/workflows/DEVKING_CHECK.yml)
 
-[![](https://shields.io/github/v/release/cogsmith/webhost?label=latest+release)](http://github.com)
-[![](https://shields.io/github/release-date/cogsmith/webhost?color=blue)](http://github.com)
-[![](https://shields.io/github/commits-since/cogsmith/webhost/latest)](http://github.com)
-<!-- [![](https://shields.io/github/commit-activity/m/cogsmith/webhost)](http://github.com) -->
+[![](https://shields.io/github/v/release/cogsmith/webhost?label=latest+release)](https://github.com/cogsmith/webhost/releases)
+[![](https://shields.io/github/release-date/cogsmith/webhost?color=blue)](https://github.com/cogsmith/webhost/releases)
+[![](https://shields.io/github/commits-since/cogsmith/webhost/latest)](https://github.com/cogsmith/webhost/commits/main)
+<!-- [![](https://shields.io/github/commit-activity/m/cogsmith/webhost)](https://github.com/cogsmith/webhost/commits/main) -->
 
-[![](https://shields.io/github/license/cogsmith/webhost?color=lightgray)](http://github.com)
-[![](https://shields.io/github/languages/code-size/cogsmith/webhost)](http://github.com)
-[![](https://shields.io/github/repo-size/cogsmith/webhost)](http://github.com)
-[![](https://shields.io/docker/image-size/cogsmith/webhost?sort=date&label=docker+size)](http://github.com)
-[![](https://shields.io/github/issues-raw/cogsmith/webhost)](http://github.com)
+[![](https://shields.io/github/license/cogsmith/webhost?color=lightgray)](https://github.com/cogsmith/webhost/blob/main/LICENSE)
+[![](https://shields.io/github/languages/code-size/cogsmith/webhost)](http://github.com/cogsmith/webhost)
+[![](https://shields.io/github/repo-size/cogsmith/webhost)](http://github.com/cogsmith/webhost)
+[![](https://shields.io/docker/image-size/cogsmith/webhost?sort=date&label=docker+size)](https://hub.docker.com/r/cogsmith/webhost)
+[![](https://shields.io/github/issues-raw/cogsmith/webhost)](https://github.com/cogsmith/webhost/issues)
 
 ---
 
