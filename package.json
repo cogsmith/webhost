@@ -1,5 +1,5 @@
 {
-  "version": "0.2.1-dev",
+  "version": "0.2.1",
   "namelong": "WEBHOST",
   "name": "webhost",
   "description": "Serve Files / Folders / Redirects",
@@ -28,5 +28,5 @@
     "fastify-static": "^4.0.1",
     "yargs": "^16.2.0"
   },
-  "versiontaglast": "0.2.0"
+  "versiontaglast": "0.2.1"
 }
