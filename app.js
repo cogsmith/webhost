@@ -48,6 +48,10 @@ App.GetSlugHost = function (slug) { if (!slug) { return slug; } let host = slug.
 
 //
 
+App.InitInfo = function () {
+    App.SetInfo('App', function () { return 'WEBHOST' });
+}
+
 App.Init = function () {
 
     App.Backend = {};
@@ -67,7 +71,7 @@ App.Init = function () {
 
     ff.log.info('App.Init');
 
-    ff.register(require('fastify-compress'));
+    //ff.register(require('fastify-compress'));
 
     ff.addHook('onRequest', (req, rep, nxt) => {
         let reqip = req.socket.remoteAddress;
