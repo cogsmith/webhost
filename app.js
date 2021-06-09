@@ -110,6 +110,7 @@ App.Init = function () {
         root: App.WebRoot,
         prefix: App.WebBase,
         list: (App.WebList ? ff_list : false),
+        preCompressed: false,
         // prefixAvoidTrailingSlash: true,
         // redirect: true,
     });
